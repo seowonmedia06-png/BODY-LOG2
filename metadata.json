@@ -1,0 +1,6 @@
+{
+  "name": "BODY LOG",
+  "description": "정밀 체성분 지표 연속 분석 및 인바디 결과지 스마트 스캔 기록 앱",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

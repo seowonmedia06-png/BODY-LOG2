@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-surface: #fcf9f8;
+  --color-surface-dim: #dcd9d9;
+  --color-surface-bright: #fcf9f8;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f6f3f2;
+  --color-surface-container: #f0eded;
+  --color-surface-container-high: #eae7e7;
+  --color-surface-container-highest: #e5e2e1;
+  --color-on-surface: #1c1b1b;
+  --color-on-surface-variant: #434655;
+  --color-outline: #747686;
+  --color-outline-variant: #c3c5d7;
+  --color-primary: #0c4cda;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #3867f4;
+  --color-on-primary-container: #fbf9ff;
+  --color-primary-fixed: #dce1ff;
+  --color-primary-fixed-dim: #b6c4ff;
+  --color-on-primary-fixed: #001550;
+  --color-secondary: #5a5f66;
+  --color-secondary-container: #dfe2eb;
+  --color-on-secondary-container: #60646c;
+  --color-tertiary: #a4322a;
+  --color-tertiary-container: #c54a3f;
+}
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #fcf9f8;
+    color: #1c1b1b;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+}
+
+.pt-safe {
+  padding-top: max(env(safe-area-inset-top, 0px), 0px);
+}
+
+/* Hide scrollbar for clean app-like UI */
+::-webkit-scrollbar {
+  display: none;
+}
+
