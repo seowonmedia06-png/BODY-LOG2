@@ -28,7 +28,7 @@ export const ValidationModal: React.FC<ValidationModalProps> = ({
   // Modal content based on validity status
   let title = '결과지를 확인해주세요';
   let description =
-    '체성분 결과지로 확인되지 않아요. 결과지 전체가 보이는 사진이나 파일을 다시 등록해주세요.';
+    '체성분 결과지로 확인되지 않아요.\n결과지 전체가 보이는 사진을 다시 등록해주세요.';
   let icon = <AlertCircle className="w-8 h-8 text-[#3867f4]" />;
   let primaryLabel = isCamera ? '다시 촬영하기' : '다시 선택하기';
   let showDirectInput = false;
@@ -37,40 +37,21 @@ export const ValidationModal: React.FC<ValidationModalProps> = ({
     case 'invalid_document':
       title = '결과지를 확인해주세요';
       description =
-        reason ||
-        '체성분 결과지로 확인되지 않아요. 결과지 전체가 보이는 사진이나 파일을 다시 등록해주세요.';
+        '체성분 결과지로 확인되지 않아요.\n결과지 전체가 보이는 사진을 다시 등록해주세요.';
       icon = <FileQuestion className="w-8 h-8 text-[#3867f4]" />;
       primaryLabel = isCamera ? '다시 촬영하기' : '다시 선택하기';
       showDirectInput = false;
       break;
 
     case 'low_quality':
-      title = '결과지를 읽기 어려워요';
-      description =
-        reason ||
-        '결과지 전체가 선명하게 보이도록 다시 촬영하거나 다른 파일을 선택해주세요.';
-      icon = <RefreshCw className="w-8 h-8 text-[#3867f4]" />;
-      primaryLabel = isCamera ? '다시 촬영하기' : '다시 등록하기';
-      showDirectInput = true;
-      break;
-
     case 'cropped':
-      title = '결과지 전체를 보여주세요';
-      description =
-        reason ||
-        '일부 영역이 잘려 있어 체성분 정보를 정확하게 확인하기 어려워요. 결과지 전체가 화면 안에 들어오도록 다시 촬영해주세요.';
-      icon = <Crop className="w-8 h-8 text-[#3867f4]" />;
-      primaryLabel = isCamera ? '다시 촬영하기' : '다시 선택하기';
-      showDirectInput = true;
-      break;
-
     case 'analysis_error':
     default:
-      title = '결과지를 정확히 읽지 못했어요';
+      title = '결과지를 읽기 어려워요';
       description =
-        '사진의 화질이나 촬영 각도로 인해 측정값을 읽지 못했어요. 사진을 다시 촬영하거나 측정값을 직접 입력할 수 있어요.';
-      icon = <AlertCircle className="w-8 h-8 text-[#3867f4]" />;
-      primaryLabel = isCamera ? '다시 촬영하기' : '다른 파일 선택';
+        '결과지 전체와 숫자가 선명하게 보이도록\n다시 촬영하거나 다른 사진을 선택해주세요.';
+      icon = <RefreshCw className="w-8 h-8 text-[#3867f4]" />;
+      primaryLabel = isCamera ? '다시 촬영하기' : '다시 등록하기';
       showDirectInput = true;
       break;
   }

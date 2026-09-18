@@ -113,7 +113,7 @@ export const CameraView: React.FC<CameraViewProps> = ({
   const activeRequestIdRef = useRef<string>('');
 
   /**
-   * Complete reset of all analysis and input states (Section 02)
+   * Complete reset of all analysis and input states
    */
   const resetAllAnalysisState = () => {
     setSelectedFile(null);
@@ -339,7 +339,7 @@ export const CameraView: React.FC<CameraViewProps> = ({
         return;
       }
 
-      // Success or Partial Success -> Move to Confirm step
+      // Move to Confirm step with extracted values (NO file export or download)
       setStep('confirm');
     } catch (err: any) {
       console.error('Analysis error:', err);
@@ -353,7 +353,7 @@ export const CameraView: React.FC<CameraViewProps> = ({
   };
 
   /**
-   * Save confirmed measurements
+   * Save confirmed measurements directly to BODY LOG app
    */
   const handleSave = () => {
     setValidationError(null);
@@ -671,8 +671,8 @@ export const CameraView: React.FC<CameraViewProps> = ({
               <h2 className="text-[19px] font-bold text-[#1c1b1b] tracking-tight">
                 분석 결과를 확인해주세요
               </h2>
-              <p className="text-[13px] text-[#5a5f66] leading-relaxed">
-                결과지에서 읽은 정보를 확인하고 필요한 항목은 직접 수정할 수 있어요.
+              <p className="text-[13px] text-[#5a5f66] leading-relaxed whitespace-pre-line">
+                {'결과지에서 읽은 정보를 확인하고\n필요한 값은 직접 수정할 수 있어요.'}
               </p>
             </div>
 
@@ -688,9 +688,7 @@ export const CameraView: React.FC<CameraViewProps> = ({
             {hasMissingOrUncertainFields && (
               <div className="bg-[#f0f5ff] border border-[#d6e4ff] text-[#0958d9] px-3.5 py-2.5 rounded-xl text-[12px] flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 shrink-0" />
-                <span>
-                  결과지에서 정확히 읽지 못한 항목이 있습니다. 빈 칸을 직접 입력해주세요.
-                </span>
+                <span>결과지에서 정확히 읽지 못했어요. 직접 입력해주세요.</span>
               </div>
             )}
 
@@ -942,11 +940,15 @@ export const CameraView: React.FC<CameraViewProps> = ({
             type="button"
             onClick={() => {
               resetAllAnalysisState();
-              setStep(sourceType === 'camera' ? 'capturing' : 'preview');
+              if (sourceType === 'camera') {
+                setStep('capturing');
+              } else {
+                fileInputRef.current?.click();
+              }
             }}
             className="w-full h-10 bg-white hover:bg-[#f6f3f2] active:scale-[0.98] text-[#5a5f66] font-medium text-[13px] rounded-xl border border-[#e5e7eb] transition-all"
           >
-            다른 파일 선택 / 다시 촬영
+            다시 선택하기
           </button>
         </footer>
       )}

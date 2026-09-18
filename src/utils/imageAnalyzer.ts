@@ -251,8 +251,8 @@ export async function analyzeSheetFile(
     if (response.ok) {
       const result = await response.json();
 
-      // If Gemini analyzed the sheet successfully
-      if (result.hasApiKey && result.validity) {
+      // If server analyzed the sheet successfully (via Gemini or Tesseract OCR)
+      if (result.validity) {
         return {
           validity: result.validity as DocumentValidity,
           validityReason: result.validityReason,

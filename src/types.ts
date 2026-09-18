@@ -45,6 +45,7 @@ export interface SheetAnalysisResult {
   validity: DocumentValidity;
   validityReason?: string;
   measurementDate: ExtractedField<string>;
+  height?: ExtractedField<number>;
   weight: ExtractedField<number>;
   skeletalMuscleMass: ExtractedField<number>;
   bodyFatMass: ExtractedField<number>;
